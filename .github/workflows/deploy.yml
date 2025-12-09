@@ -29,15 +29,35 @@ jobs:
       - name: Crear paquete de deploy
         run: |
           echo "📦 Creando paquete de deploy..."
+          
+          # Verificar que los directorios existen
+          echo "Verificando estructura del proyecto..."
+          ls -la
+          
+          # Crear directorio de deploy
           mkdir -p deploy
-          cp -r config deploy/
-          cp -r models deploy/
-          cp -r controllers deploy/
-          cp -r views deploy/
-          cp -r public deploy/
-          cp -r database deploy/
+          
+          # Copiar directorios solo si existen
+          [ -d "config" ] && cp -r config deploy/ || echo "⚠️ Directorio config no encontrado"
+          [ -d "models" ] && cp -r models deploy/ || echo "⚠️ Directorio models no encontrado"
+          [ -d "controllers" ] && cp -r controllers deploy/ || echo "⚠️ Directorio controllers no encontrado"
+          [ -d "views" ] && cp -r views deploy/ || echo "⚠️ Directorio views no encontrado"
+          [ -d "public" ] && cp -r public deploy/ || echo "⚠️ Directorio public no encontrado"
+          [ -d "database" ] && cp -r database deploy/ || echo "⚠️ Directorio database no encontrado"
+          
+          # Verificar que se copiaron archivos
+          if [ -z "$(ls -A deploy)" ]; then
+            echo "❌ Error: No se copiaron archivos al directorio deploy"
+            exit 1
+          fi
+          
+          # Crear archivo tar
           tar -czf deploy.tar.gz deploy/
           echo "✅ Paquete creado: deploy.tar.gz"
+          
+          # Mostrar contenido del paquete
+          echo "Contenido del paquete:"
+          tar -tzf deploy.tar.gz | head -20
       
       - name: Upload deployment package
         uses: actions/upload-artifact@v4
