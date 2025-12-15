@@ -13,6 +13,7 @@
             <h1 class="logo">🏋️ Gimnasio MVC</h1>
             <nav class="nav">
                 <a href="/index.php?controller=member&action=index" class="nav-link">Miembros</a>
+                <a href="/index.php?controller=membership&action=index" class="nav-link">Membresias</a>
                 <a href="/index.php?controller=class&action=index" class="nav-link">Clases</a>
                 <a href="/index.php?controller=payment&action=index" class="nav-link">Pagos</a>
             </nav>

@@ -42,7 +42,8 @@ $action = $_GET['action'] ?? 'index';
 $controllers = [
     'member' => 'MemberController',
     'class' => 'ClassController',
-    'payment' => 'PaymentController'
+    'payment' => 'PaymentController',
+    'membership' => 'MembershipController'
 ];
 
 // SERVIDOR: Valida que el controlador existe

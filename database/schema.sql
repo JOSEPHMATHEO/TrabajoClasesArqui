@@ -5,6 +5,7 @@
 -- CREATE DATABASE gimnasio_db;
 -- \c gimnasio_db;
 
+
 -- Tabla de Miembros
 CREATE TABLE IF NOT EXISTS members (
     id SERIAL PRIMARY KEY,
